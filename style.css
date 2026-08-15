@@ -1188,15 +1188,28 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 }
 
 @media (max-width:430px){
-  .topic-grid{ grid-template-columns:1fr; max-width:320px; }
+  .topic-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    max-width:360px;
+    gap:10px;
+  }
   .benefit-strip{ grid-template-columns:repeat(2, minmax(0, 1fr)); max-width:none; gap:10px; }
   .topic-card,
-  .topic-card:nth-last-child(-n+2),
+  .topic-card:nth-last-child(-n+2){ grid-column:auto; width:auto; padding:8px; }
   .topic-card:last-child{
-    grid-column:1;
-    width:100%;
+    grid-column:1 / -1;
+    width:calc(50% - 5px);
     justify-self:center;
   }
+  .topic-icon{ margin-bottom:6px; }
+  .topic-card h3{ margin-bottom:4px; line-height:1.1; }
+  .topic-card p{ line-height:1.25; }
+
+  .lesson-card,
+  .lesson-card:nth-last-child(-n+2){ padding:8px; }
+  .lesson-icon{ margin-bottom:6px; }
+  .lesson-card h3{ margin-bottom:4px; line-height:1.1; }
+  .lesson-card p{ line-height:1.25; }
 }
 
 @media (max-width:380px){
