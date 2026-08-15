@@ -1028,7 +1028,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .section-sub{ font-size:.94rem; line-height:1.5; }
   .topic-grid{
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    max-width:330px;
+    max-width:560px;
   }
   .topic-card,
   .topic-card:nth-last-child(-n+2),
@@ -1190,15 +1190,15 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 @media (max-width:430px){
   .topic-grid{
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    max-width:330px;
-    gap:10px;
+    max-width:560px;
+    gap:14px;
   }
   .benefit-strip{ grid-template-columns:repeat(2, minmax(0, 1fr)); max-width:none; gap:10px; }
   .topic-card,
   .topic-card:nth-last-child(-n+2){ grid-column:auto; width:auto; padding:8px; }
   .topic-card:last-child{
     grid-column:1 / -1;
-    width:calc(50% - 5px);
+    width:calc(50% - 6px);
     justify-self:center;
   }
   .topic-icon{ margin-bottom:6px; }
