@@ -1019,7 +1019,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hero-children{
     width:min(94vw, 680px);
     left:50%;
-    bottom:-24px;
+    bottom:-52px;
     transform:translateX(-50%);
   }
   .hero-wave{ height:48px; }
@@ -1229,7 +1229,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hero-desc{ font-size:.79rem; }
   .trust-row li{ font-size:.58rem; }
   .trust-row img{ width:20px; height:20px; }
-  .hero-children{ width:94vw; bottom:-20px; }
+  .hero-children{ width:94vw; bottom:-46px; }
   .feature-board-heading h2{ font-size:1.55rem; }
   .leaf-decoration{ display:none; }
   .benefit-item{ gap:10px; padding:12px; }
