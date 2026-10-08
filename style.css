@@ -31,7 +31,7 @@
 
 html{ scroll-behavior:smooth; }
 
-#topics, #features, #download{ scroll-margin-top:82px; }
+#about, #topics, #features, #team, #download{ scroll-margin-top:82px; }
 
 body{
   margin:0;
@@ -52,7 +52,7 @@ a{ color:inherit; }
   padding:0 24px;
 }
 
-a:focus-visible, button:focus-visible, .btn:focus-visible{
+a:focus-visible, button:focus-visible, .btn:focus-visible, .hamburger:focus-visible, summary:focus-visible{
   outline:3px solid var(--blue);
   outline-offset:3px;
 }
@@ -123,6 +123,30 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 
 .hero-download{ width:min(70%, 230px); }
 
+.hero-download-details{
+  margin:10px 0 0;
+  color:rgba(255,255,255,.85);
+  text-shadow:0 1px 4px rgba(18,48,86,.35);
+  font-size:.8rem;
+  font-weight:800;
+  line-height:1.6;
+}
+.hero-download-details a{ text-underline-offset:3px; }
+
+.skip-link{
+  position:fixed;
+  z-index:200;
+  top:8px;
+  left:8px;
+  padding:12px 18px;
+  border-radius:10px;
+  background:var(--white);
+  color:var(--navy);
+  font-weight:800;
+  transform:translateY(-150%);
+}
+.skip-link:focus{ transform:translateY(0); }
+
 /* =========================================================
    HEADER
    ========================================================= */
@@ -161,7 +185,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 .main-nav{
   display:flex;
   align-items:center;
-  gap:30px;
+  gap:20px;
   margin-left:auto;
   margin-right:10px;
 }
@@ -349,23 +373,31 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 }
 
 .trust-row{
+  position:relative;
   list-style:none;
-  display:flex;
-  flex-wrap:wrap;
-  gap:24px;
-  margin:18px 0 0;
-  padding:0;
-  justify-content:center;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:12px;
+  width:min(100%, 500px);
+  margin:14px auto 0;
+  padding:12px 16px;
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:18px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 6px 18px rgba(18,48,86,.16);
 }
 .trust-row li{
   display:flex;
   align-items:center;
+  justify-content:center;
   gap:8px;
+  min-width:0;
   font-weight:800;
-  font-size:.92rem;
+  font-size:.84rem;
+  line-height:1.3;
   color:var(--navy);
 }
-.trust-row img{ width:26px; height:26px; }
+.trust-row img{ width:32px; height:32px; object-fit:contain; flex:none; }
 
 .hero-visual{
   position:relative;
@@ -681,6 +713,164 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 .benefit-orange h3{ color:#D97900; }
 
 /* =========================================================
+   ABOUT THE APP & DEVELOPER TEAM
+   ========================================================= */
+.about-section{
+  padding:64px 0;
+  background:var(--white);
+}
+.about-overview{
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items:center;
+  gap:48px;
+}
+.about-copy p:not(.eyebrow){ margin:0 0 18px; font-size:1rem; line-height:1.75; }
+.about-topics-link{ display:inline-block; color:var(--grass-dark); font-weight:800; line-height:1.5; text-underline-offset:4px; }
+.about-topics-link span{ margin-left:6px; }
+.about-highlight{
+  padding:32px;
+  border:1px solid #CDE9D5;
+  border-radius:28px;
+  background:linear-gradient(145deg, #EFFAF2, #E8F6FF);
+}
+.about-app-icon{ width:96px; height:96px; object-fit:contain; border-radius:22px; margin-bottom:18px; }
+.about-highlight h3{ margin:0 0 12px; color:var(--navy); font-family:var(--font-display); font-size:1.55rem; line-height:1.25; }
+.about-highlight p{ margin:0 0 18px; line-height:1.65; }
+.about-highlight ul{ margin:0; padding-left:22px; }
+.about-highlight li{ padding-left:4px; margin-top:10px; color:var(--navy); font-size:.92rem; line-height:1.55; }
+.about-highlight li::marker{ color:var(--grass-dark); }
+.audience-grid{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:20px; margin-top:36px; }
+.audience-card{ min-width:0; padding:26px; border:1px solid #E0EBF2; border-radius:22px; background:#FBFDFF; }
+.audience-card img{ width:48px; height:48px; object-fit:contain; margin-bottom:14px; }
+.audience-card h3{ margin:0 0 10px; color:var(--navy); font-family:var(--font-display); font-size:1.2rem; }
+.audience-card p{ margin:0; font-size:.92rem; line-height:1.65; }
+
+.team-section{ padding:64px 0; text-align:center; background:var(--cream); }
+.team-section .section-sub{ margin:0 auto; line-height:1.6; }
+.developer-grid{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:24px; margin:32px auto 0; max-width:1000px; }
+.developer-card{
+  min-width:0;
+  padding:32px 20px 28px;
+  border:1px solid #E0E8E4;
+  border-top:5px solid var(--green);
+  border-radius:24px;
+  background:var(--white);
+  box-shadow:0 10px 26px rgba(18,48,86,.06);
+}
+.developer-blue{ border-top-color:var(--blue); }
+.developer-orange{ border-top-color:var(--orange); }
+.developer-photo{
+  width:164px;
+  height:164px;
+  max-width:100%;
+  aspect-ratio:1 / 1;
+  margin:0 auto 22px;
+  border:5px solid #EDF5F1;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:50% 35%;
+}
+.developer-blue .developer-photo{ border-color:var(--blue-tint); }
+.developer-orange .developer-photo{ border-color:#FFF0E1; }
+.developer-role{ margin:0 0 8px; color:var(--grass-dark); font-size:.72rem; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; }
+.developer-blue .developer-role{ color:#206CB0; }
+.developer-orange .developer-role{ color:#A45200; }
+.developer-card h3{ margin:0 0 8px; color:var(--navy); font-family:var(--font-display); font-size:1.35rem; line-height:1.25; }
+.developer-team-name{ margin:0; font-size:.86rem; }
+.footer-team-credit{ margin:0 0 20px; color:rgba(255,255,255,.8); text-align:center; font-size:.82rem; line-height:1.6; }
+.footer-team-credit a{ text-underline-offset:3px; }
+
+@media (max-width:960px){
+  .about-overview{ gap:28px; }
+  .about-highlight{ padding:26px; }
+  .audience-card{ padding:22px; }
+}
+@media (max-width:767px){
+  .about-section, .team-section{ padding:46px 0; }
+  .about-overview{ grid-template-columns:1fr; gap:24px; }
+  .about-copy p:not(.eyebrow){ font-size:.94rem; line-height:1.7; }
+  .about-highlight{ padding:24px; border-radius:22px; }
+  .about-highlight h3{ font-size:1.35rem; }
+  .audience-grid{ grid-template-columns:1fr; gap:14px; margin-top:24px; }
+  .audience-card{ padding:22px; }
+  .developer-grid{ grid-template-columns:1fr; gap:18px; max-width:380px; margin-top:24px; }
+  .developer-card{ padding:28px 20px; }
+  .footer-team-credit{ font-size:.78rem; }
+}
+
+/* =========================================================
+   APP DETAILS & INSTALLATION
+   ========================================================= */
+.download-section{
+  padding:64px 0;
+  background:linear-gradient(180deg, #F0F9FF, var(--white));
+  text-align:center;
+}
+.download-section .section-sub{ margin:0 auto; line-height:1.6; }
+.download-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  margin-top:32px;
+  text-align:left;
+}
+.app-details-card, .install-card{
+  min-width:0;
+  padding:30px;
+  border:1px solid #D8E8F0;
+  border-radius:24px;
+  background:var(--white);
+  box-shadow:0 10px 26px rgba(18,48,86,.06);
+}
+.app-details-heading{ display:flex; align-items:center; gap:16px; }
+.app-details-heading img{ width:74px; height:74px; object-fit:contain; flex:none; }
+.app-details-heading h3, .install-card > h3, .download-faq > h3{
+  margin:0 0 6px;
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  color:var(--navy);
+}
+.app-details-heading p{ margin:0; font-size:.9rem; }
+.app-details{ margin:22px 0 26px; }
+.app-details > div{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:10px 0;
+  border-bottom:1px solid #E8F0F5;
+}
+.app-details dt{ font-size:.9rem; }
+.app-details dd{ margin:0; color:var(--navy); font-weight:800; text-align:right; }
+.app-download-btn{ white-space:normal; text-align:center; justify-content:center; }
+.download-note, .install-note{ font-size:.85rem; line-height:1.6; margin:20px 0 0; }
+.install-steps{ list-style:none; counter-reset:install; padding:0; margin:24px 0 0; }
+.install-steps li{ display:flex; gap:14px; margin-bottom:22px; counter-increment:install; }
+.install-steps li:last-child{ margin-bottom:0; }
+.install-steps li::before{
+  content:counter(install);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:var(--blue-tint);
+  color:var(--navy);
+  font-family:var(--font-display);
+  font-weight:600;
+}
+.install-steps h4{ margin:0 0 5px; color:var(--navy); font-size:1rem; }
+.install-steps p{ margin:0; font-size:.92rem; line-height:1.6; }
+.download-faq{ max-width:850px; margin:38px auto 0; text-align:left; }
+.download-faq > h3{ text-align:center; margin-bottom:18px; }
+.download-faq details{ padding:18px 20px; margin-top:10px; border:1px solid #D8E8F0; border-radius:16px; background:var(--white); }
+.download-faq summary{ cursor:pointer; color:var(--navy); font-weight:800; line-height:1.5; }
+.download-faq details p{ margin:12px 0 0; font-size:.94rem; line-height:1.65; }
+.download-faq a{ color:var(--navy); text-underline-offset:3px; }
+
+/* =========================================================
    CTA
    ========================================================= */
 .cta{
@@ -897,7 +1087,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 /* =========================================================
    RESPONSIVE
    ========================================================= */
-@media (max-width:960px){
+@media (max-width:1100px){
   .main-nav{
     position:absolute;
     top:100%; left:0; right:0;
@@ -914,7 +1104,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hamburger{ display:flex; }
   .mobile-only-link{ display:block; }
   .header-cta{ display:none; }
+}
 
+@media (max-width:960px){
   .hero-inner{ flex-direction:column; text-align:center; }
   .hero-content{ max-width:560px; }
   .hero-desc{ margin-left:auto; margin-right:auto; }
@@ -949,7 +1141,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 @media (max-width:767px){
   .container{ padding:0 16px; }
 
-  #topics, #features, #download{ scroll-margin-top:72px; }
+  #about, #topics, #features, #team, #download{ scroll-margin-top:72px; }
 
   .header-inner{ height:64px; gap:12px; }
   .logo img{ height:31px; }
@@ -969,7 +1161,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   }
   .main-nav a{ min-height:44px; display:flex; align-items:center; }
 
-  .hero{ min-height:100svh; padding:72px 0 38px; }
+  .hero{ min-height:100svh; padding:72px 0 clamp(170px, 48vw, 310px); }
   .hero-bg{ background-position:56% bottom; }
   .hero-inner{ gap:0; }
   .hero-emblem{ width:min(100%, 410px); height:225px; margin-bottom:2px; }
@@ -990,7 +1182,8 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
     grid-template-columns:repeat(3, minmax(0, 1fr));
     gap:0;
     width:min(100%, 390px);
-    margin:16px auto 0;
+    margin:14px auto 0;
+    padding:10px 8px;
   }
   .trust-row li{
     position:relative;
@@ -998,11 +1191,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
     justify-content:flex-start;
     gap:4px;
     color:var(--navy);
-    font-size:.66rem;
-    line-height:1.15;
+    font-size:.72rem;
+    line-height:1.35;
     text-align:center;
-    white-space:nowrap;
-    padding:5px 8px;
+    white-space:normal;
+    padding:5px 6px;
     text-transform:uppercase;
   }
   .trust-row li:not(:last-child)::after{
@@ -1012,9 +1205,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
     right:0;
     bottom:7px;
     width:1px;
-    background:rgba(255,255,255,.72);
+    background:rgba(18,48,86,.15);
   }
-  .trust-row img{ width:22px; height:22px; }
+  .trust-row img{ width:28px; height:28px; }
   .hero-visual{ display:none; }
   .hero-children{
     width:min(94vw, 680px);
@@ -1227,8 +1420,8 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hero-copy::before{ inset:-30px -18px -28px; }
   .hero-tagline{ font-size:1.18rem; }
   .hero-desc{ font-size:.79rem; }
-  .trust-row li{ font-size:.58rem; }
-  .trust-row img{ width:20px; height:20px; }
+  .trust-row li{ font-size:.68rem; }
+  .trust-row img{ width:26px; height:26px; }
   .hero-children{ width:94vw; bottom:-30px; }
   .hero-wave{ bottom:-14px; }
   .feature-board-heading h2{ font-size:1.55rem; }
@@ -1242,11 +1435,24 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .cta-download-btn{ width:min(100%, 270px); }
 }
 
+@media (max-width:767px){
+  .download-section{ padding:46px 0; }
+  .download-grid{ grid-template-columns:1fr; gap:18px; margin-top:24px; }
+  .app-details-card, .install-card{ padding:24px 20px; }
+  .app-details-heading img{ width:60px; height:60px; }
+  .app-details-heading h3, .install-card > h3, .download-faq > h3{ font-size:1.25rem; }
+  .app-details dd{ font-size:.9rem; }
+  .app-download-btn{ width:100%; padding:14px 18px; }
+  .download-faq{ margin-top:28px; }
+  .download-faq details{ padding:16px; }
+  .hero-download-details{ font-size:.7rem; }
+}
+
 /* =========================================================
    MOTION PREFERENCES
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   .floaty, .phone-mockup{ animation:none; }
-  .btn-primary, .topic-card, .feature-card{ transition:none; }
+  .btn-primary, .topic-card, .feature-card, .lesson-card, .asset-button, .cta-download-btn{ transition:none; }
 }
