@@ -5,6 +5,7 @@
     "dockerfilePath": "Dockerfile"
   },
   "deploy": {
+    "startCommand": "/usr/local/bin/batanghanda-start",
     "healthcheckPath": "/api/feedback.php?limit=1",
     "healthcheckTimeout": 60,
     "restartPolicyType": "ON_FAILURE",

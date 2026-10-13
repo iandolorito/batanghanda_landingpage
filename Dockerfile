@@ -9,7 +9,10 @@ COPY assets/ ./assets/
 COPY api/ ./api/
 COPY docker/apache-security.conf /etc/apache2/conf-enabled/batanghanda-security.conf
 COPY docker/start.sh /usr/local/bin/batanghanda-start
-RUN chmod +x /usr/local/bin/batanghanda-start
+RUN chmod +x /usr/local/bin/batanghanda-start \
+    && a2dismod mpm_event mpm_worker \
+    && a2enmod mpm_prefork \
+    && apache2ctl -t
 
 ENV BH_FEEDBACK_DB_PATH=/data/feedback.sqlite
 EXPOSE 8080
