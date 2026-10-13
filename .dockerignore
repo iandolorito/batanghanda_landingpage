@@ -1,0 +1,9 @@
+.git
+app
+storage
+tests
+.agents
+.codex
+.aws
+.env*
+README.md

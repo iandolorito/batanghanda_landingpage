@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261011-1" />
+<link rel="stylesheet" href="style.css?v=20261013-1" />
+<script src="feedback.js?v=20261013-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -32,6 +33,7 @@
       <a href="#topics">What They'll Learn</a>
       <a href="#features">Why BatangHanda</a>
       <a href="#team">The Team</a>
+      <a href="#feedback">Rate the App</a>
       <a href="https://github.com/iandolorito/batanghanda_landingpage/releases/download/app/BatangHanda.apk" class="mobile-only-link">Download</a>
     </nav>
 
@@ -337,6 +339,81 @@
         <summary>Why does Android ask for permission to install?</summary>
         <p>This download is installed directly from an APK. Android may ask you to allow installation from your browser or Files app. For help with the prompts, see <a href="https://support.google.com/pixelphone/answer/7391672?hl=en" target="_blank" rel="noopener noreferrer">Google's installation guide</a>.</p>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RATINGS & FEEDBACK ============ -->
+<section class="feedback-section" id="feedback" aria-labelledby="feedback-heading">
+  <div class="container">
+    <p class="eyebrow">Your voice helps us grow</p>
+    <h2 class="section-title" id="feedback-heading">How was your BatangHanda experience?</h2>
+    <p class="section-sub">Leave a rating, share a comment, or suggest an idea for the app. Everyone is welcome!</p>
+
+    <div class="feedback-grid">
+      <aside class="rating-overview" aria-labelledby="rating-overview-heading">
+        <img class="feedback-app-icon" src="assets/images/batanghanda_app_icon.png" alt="" width="80" height="80" loading="lazy" />
+        <h3 id="rating-overview-heading">Rated by our community</h3>
+        <div class="rating-score"><span id="rating-average">&mdash;</span><span class="rating-out-of"> / 5</span></div>
+        <div class="rating-stars" id="rating-summary-stars" role="img" aria-label="No ratings yet">
+          <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-stars-fill" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+        <p class="rating-count" id="rating-count">Loading ratings&hellip;</p>
+        <div class="rating-distribution" aria-label="Rating breakdown">
+          <div><span>5 <span aria-hidden="true">&#9733;</span></span><progress id="rating-bar-5" max="1" value="0" aria-label="5 star ratings"></progress><span id="rating-total-5">0</span></div>
+          <div><span>4 <span aria-hidden="true">&#9733;</span></span><progress id="rating-bar-4" max="1" value="0" aria-label="4 star ratings"></progress><span id="rating-total-4">0</span></div>
+          <div><span>3 <span aria-hidden="true">&#9733;</span></span><progress id="rating-bar-3" max="1" value="0" aria-label="3 star ratings"></progress><span id="rating-total-3">0</span></div>
+          <div><span>2 <span aria-hidden="true">&#9733;</span></span><progress id="rating-bar-2" max="1" value="0" aria-label="2 star ratings"></progress><span id="rating-total-2">0</span></div>
+          <div><span>1 <span aria-hidden="true">&#9733;</span></span><progress id="rating-bar-1" max="1" value="0" aria-label="1 star ratings"></progress><span id="rating-total-1">0</span></div>
+        </div>
+        <p class="rating-overview-note">Every bit of feedback helps us make learning and preparedness better.</p>
+      </aside>
+
+      <form class="feedback-form" id="feedback-form" data-endpoint="api/feedback.php">
+        <h3>Share your thoughts</h3>
+        <p class="feedback-form-intro">No account needed. Just choose your stars to get started.</p>
+        <fieldset class="rating-picker" aria-describedby="rating-choice-label">
+          <legend>Your app rating <span class="field-required">(required)</span></legend>
+          <div class="rating-options">
+            <input type="radio" name="rating" id="rating-1" value="1" required /><label for="rating-1"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">1 star</span></label>
+            <input type="radio" name="rating" id="rating-2" value="2" /><label for="rating-2"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">2 stars</span></label>
+            <input type="radio" name="rating" id="rating-3" value="3" /><label for="rating-3"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">3 stars</span></label>
+            <input type="radio" name="rating" id="rating-4" value="4" /><label for="rating-4"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">4 stars</span></label>
+            <input type="radio" name="rating" id="rating-5" value="5" /><label for="rating-5"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">5 stars</span></label>
+          </div>
+          <p class="rating-choice-label" id="rating-choice-label" aria-live="polite">Choose 1 to 5 stars</p>
+        </fieldset>
+        <div class="feedback-field">
+          <label for="feedback-name">Display name <span>(optional)</span></label>
+          <input type="text" id="feedback-name" name="name" maxlength="60" placeholder="Your first name or nickname" autocomplete="nickname" />
+        </div>
+        <div class="feedback-field">
+          <label for="feedback-comment">Your comment <span>(optional)</span></label>
+          <textarea id="feedback-comment" name="comment" rows="3" maxlength="1000" placeholder="What did you like? How was it using the app?"></textarea>
+        </div>
+        <div class="feedback-field">
+          <label for="feedback-suggestion">Suggestions for us <span>(optional)</span></label>
+          <textarea id="feedback-suggestion" name="suggestion" rows="3" maxlength="1000" placeholder="What could we improve or add next?"></textarea>
+        </div>
+        <div class="feedback-honeypot" aria-hidden="true">
+          <label for="feedback-website">Leave this field empty</label>
+          <input type="text" id="feedback-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="feedback-privacy" id="feedback-privacy">Your rating, display name, comment, and suggestion will be public. Please leave out personal or contact details. A blank name appears as &ldquo;Anonymous visitor.&rdquo;</p>
+        <button class="btn btn-primary feedback-submit" id="feedback-submit" type="submit" aria-describedby="feedback-privacy" disabled>Submit feedback <span aria-hidden="true">&rarr;</span></button>
+        <p class="feedback-status" id="feedback-status" role="status" aria-live="polite" aria-atomic="true">Connecting to feedback&hellip;</p>
+        <noscript><p class="feedback-status is-error">Please enable JavaScript to view ratings and submit feedback.</p></noscript>
+      </form>
+    </div>
+
+    <div class="community-feedback" aria-labelledby="community-feedback-heading">
+      <div class="community-feedback-heading"><h3 id="community-feedback-heading">From the community</h3><span>Latest ratings, comments &amp; ideas</span></div>
+      <p class="feedback-empty" id="feedback-empty">Loading community feedback&hellip;</p>
+      <div class="feedback-list" id="feedback-list" aria-busy="true"></div>
+      <button class="feedback-secondary" id="feedback-load-more" type="button" hidden>Show more feedback</button>
+      <button class="feedback-secondary" id="feedback-retry" type="button" hidden>Try again</button>
+      <p class="feedback-status" id="feedback-list-status" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
