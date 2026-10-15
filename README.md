@@ -36,6 +36,20 @@ For a service exposed exclusively through Railway's public HTTP edge, also set `
 
 Serve this folder with Apache/PHP (for example, XAMPP at `http://localhost/bh_landingpage/`). PHP must be able to write to `storage/`. Restart Apache after enabling `pdo_sqlite`. Alternatively, run `php -S 127.0.0.1:8080 -t . dev-router.php` from this folder. The included router blocks private storage and source-control files; `.htaccess` alone is not read by the PHP development server.
 
+## Google Search setup
+
+The page title, description, canonical URL, and `WebSite` structured data identify the site as BatangHanda App at `https://batanghanda.online/`. The root `robots.txt` allows crawling and points to the one-page `sitemap.xml`. The Dockerfile includes both files in the deployment. A missing robots file or sitemap alone does not prevent indexing; these additions help communicate the preferred URL and support discovery.
+
+After deploying these files:
+
+1. Confirm `https://batanghanda.online/`, `https://batanghanda.online/robots.txt`, and `https://batanghanda.online/sitemap.xml` return HTTP 200 publicly.
+2. Open [Google Search Console](https://search.google.com/search-console/), add the Domain property `batanghanda.online`, and verify ownership using the DNS TXT record Google provides. Add it at the domain's DNS provider and keep it in place. If you already verified the domain, use that property.
+3. In **Sitemaps**, submit `https://batanghanda.online/sitemap.xml`.
+4. In **URL inspection**, inspect `https://batanghanda.online/`, choose **Test live URL**, and, if Google can access and index it, choose **Request indexing**. Resolve any access or indexing errors the tool reports.
+5. Monitor **Page indexing** and **Performance** for impressions and queries such as `BatangHanda App`. Link to the landing page from the app's Facebook page and GitHub repository so people can find the same website from those profiles.
+
+These steps require the owner's Google account and DNS access; publishing the code alone does not verify ownership or submit an indexing request. Google says crawling can take a few days to a few weeks, and indexing or a particular ranking is not guaranteed. See Google's [ownership verification guide](https://support.google.com/webmasters/answer/9008080), [sitemap guide](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), and [recrawling guide](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl).
+
 ## Feedback storage and operations
 
 Ratings, optional names, comments, and suggestions are saved in `storage/feedback.sqlite` and are public. No login or email is required. The database starts empty. The `storage/.htaccess` file blocks Apache downloads; ensure Apache permits its access rules (`AllowOverride AuthConfig`). Other web servers must explicitly deny requests to `/storage/`, or store the database outside the web root using the absolute `BH_FEEDBACK_DB_PATH` environment variable.

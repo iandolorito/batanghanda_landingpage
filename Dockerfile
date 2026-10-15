@@ -4,7 +4,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
     && php -r 'exit(extension_loaded("pdo_sqlite") ? 0 : 1);'
 
 WORKDIR /var/www/html
-COPY index.html style.css feedback.js ./
+COPY index.html style.css feedback.js robots.txt sitemap.xml ./
 COPY assets/ ./assets/
 COPY api/ ./api/
 COPY docker/apache-security.conf /etc/apache2/conf-enabled/batanghanda-security.conf
